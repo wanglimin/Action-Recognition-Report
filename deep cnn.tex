@@ -91,6 +91,9 @@ In total, the learning rate is decreased 3 times. At the same time, we notice th
 
 \textbf{High Dropout Ratio.} Similar to the original two-stream ConvNets \cite{SimonyanZ14}, we also set high drop out ratio for the fully connected layers in the very deep two-stream ConvNets. In particular, we set 0.9 and 0.8 drop out ratios for the fully connected layers of temporal nets. For spatial nets, we set 0.9 and 0.9 drop out ratios for the fully connected layers of spatial nets.
 
+%Multi-GPU training 
+\textbf{Multi-GPU training.}  One great obstacle for applying deep learning models in video recognition task is the prohibitively long training time. Also the input of multiple frames heightens the memory consumption for storing layer activations. We solve these problems by employing data-parallel training on multiple GPUs. The training system is implemented with Caffe and OpenMPI. Following a similar technique used in \cite{HeArxiv2015}, we avoid synchronizing the parameters of fully connected (fc) layers by gathering the activations from all worker processes before running the fc layers. With 4 GPUs, the training is ??x faster and takes ??x less memory per GPU. The system is publicly available at \url{https://github.com/yjxiong/caffe/tree/action_recog}.
+
 \begin{table*}
 \begin{center}
 \resizebox{1\textwidth}{!}{
